@@ -11,6 +11,10 @@ public class Patient {
     private Integer id;
     @Column(name = "name")
     private String name;
+    @Column(name = "age")
+    private Integer age;
+
+
 
     @Column(name = "gender")
     private String gender;
@@ -26,20 +30,33 @@ public class Patient {
 
     @Column(name = "time")
     private String time;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @Column(name = "status")
+    private String status;
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hospital_id")
     private Hospital  hospital;
 
     public Patient() {
     }
 
-    public Patient(String name, String gender, String address, String relatives, String contact, String time) {
+    public Patient(String name, Integer age, String gender, String address, String relatives, String contact, String time, String status) {
         this.name = name;
+        this.age = age;
         this.gender = gender;
         this.address = address;
         this.relatives = relatives;
         this.contact = contact;
         this.time = time;
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Integer getId() {
@@ -65,7 +82,13 @@ public class Patient {
     public void setGender(String gender) {
         this.gender = gender;
     }
+    public Integer getAge() {
+        return age;
+    }
 
+    public void setAge(Integer age) {
+        this.age = age;
+    }
     public String getAddress() {
         return address;
     }

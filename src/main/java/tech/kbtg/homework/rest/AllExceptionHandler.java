@@ -8,7 +8,7 @@ import tech.kbtg.homework.exception.NotFoundException;
 import tech.kbtg.homework.response.HospitalErrorResponse;
 
 @ControllerAdvice
-public class MainExceptionHandler {
+public class AllExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<HospitalErrorResponse> handleException(NotFoundException ex){

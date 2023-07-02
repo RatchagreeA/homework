@@ -9,6 +9,7 @@ import tech.kbtg.homework.service.HwService;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/hospitals")
@@ -110,11 +111,12 @@ public class HospitalController {
     @DeleteMapping("/{id}")
     public Hospital deleteHospitalById(@PathVariable Integer id) {
         Hospital hpt = hwService.HptFindById(id);
+        List<Patient> patients = hwService.PtFindAll();
+        List<Patient> pt = patients.stream().filter(p -> p.getHospital().getName().equals(hpt.getName()) && p.getStatus().equals("")).collect(Collectors.toList());
+        if (pt.size() > 0) {
+            throw new RuntimeException("Bad request");
+        }
         hpt.setStatus("deleted");
         return hwService.HptSave(hpt);
-    }
-    @GetMapping("/pt")
-    public List<Patient> getPt(){
-        return hwService.PtFindAll();
     }
 }

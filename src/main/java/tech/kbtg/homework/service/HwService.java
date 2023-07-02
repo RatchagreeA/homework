@@ -14,8 +14,8 @@ public interface HwService {
 
     Patient PtSave(Patient patient);
     List<Patient> PtFindAll();
-//    Patient PtFindById(Integer id);
-//    Patient PtDeleteById(Integer id);
+    Patient PtFindById(Integer id);
+    Patient PtDeleteById(Integer id);
 
 
 }

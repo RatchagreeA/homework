@@ -51,32 +51,4 @@ public class HospitalDAOImpl implements HospitalDAO {
         return hospital;
     }
 
-//    @Override
-//    public Patient PtSave(Patient patient) {
-//        return entityManager.merge(patient);
-//    }
-//
-//    @Override
-//    public List<Patient> PtFindAll() {
-//        TypedQuery<Patient> query = entityManager.createQuery("FROM Patient", Patient.class);
-//        List<Patient> patients = query.getResultList();
-//        return patients;
-//    }
-//
-//    @Override
-//    public Patient PtFindById(Integer id) {
-//        Patient patient = entityManager.find(Patient.class, id);
-//        if (patient == null) {
-//            throw new NotFoundException("Not found id " + id);
-//        }
-//        return patient;
-//    }
-//
-//    @Override
-//    public Patient PtDeleteById(Integer id) {
-//        Patient patient = PtFindById(id);
-//        entityManager.remove(patient);
-//        return patient;
-//    }
-
 }

@@ -3,11 +3,11 @@ package tech.kbtg.homework.rest;
 import com.google.common.collect.Lists;
 import org.springframework.web.bind.annotation.*;
 import tech.kbtg.homework.entity.Hospital;
+import tech.kbtg.homework.entity.Patient;
 import tech.kbtg.homework.lib.InputHospital;
 import tech.kbtg.homework.service.HwService;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -113,5 +113,8 @@ public class HospitalController {
         hpt.setStatus("deleted");
         return hwService.HptSave(hpt);
     }
-
+    @GetMapping("/pt")
+    public List<Patient> getPt(){
+        return hwService.PtFindAll();
+    }
 }

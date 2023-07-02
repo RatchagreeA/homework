@@ -3,8 +3,10 @@ package tech.kbtg.homework.service.impl;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import tech.kbtg.homework.dao.PatientDAO;
 import tech.kbtg.homework.entity.Hospital;
 
+import tech.kbtg.homework.entity.Patient;
 import tech.kbtg.homework.exception.NotFoundException;
 import tech.kbtg.homework.repo.HospitalRepository;
 import tech.kbtg.homework.service.HwService;
@@ -14,10 +16,12 @@ import java.util.List;
 @Service
 public class HwServiceImpl implements HwService {
 
+    private PatientDAO patientDAO;
     private HospitalRepository hospitalRepository;
 
 
-    public HwServiceImpl(HospitalRepository hospitalRepository) {
+    public HwServiceImpl(PatientDAO patientDAO, HospitalRepository hospitalRepository) {
+        this.patientDAO = patientDAO;
         this.hospitalRepository = hospitalRepository;
     }
 
@@ -50,6 +54,16 @@ public class HwServiceImpl implements HwService {
         }
         hospitalRepository.deleteById(id);
         return hospital;
+    }
+
+    @Override
+    @Transactional
+    public Patient PtSave(Patient patient) {
+        return patientDAO.PtSave(patient);
+    }
+    @Override
+    public List<Patient> PtFindAll() {
+        return patientDAO.PtFindAll();
     }
 
 

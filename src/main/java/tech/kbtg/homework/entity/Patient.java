@@ -26,9 +26,9 @@ public class Patient {
 
     @Column(name = "time")
     private String time;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "hospital_id")
-    private String  hospital;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "hospital_id")
+    private Hospital  hospital;
 
     public Patient() {
     }
@@ -98,11 +98,11 @@ public class Patient {
         this.time = time;
     }
 
-    public String getHospital() {
+    public Hospital getHospital() {
         return hospital;
     }
 
-    public void setHospital(String hospital) {
+    public void setHospital(Hospital hospital) {
         this.hospital = hospital;
     }
 

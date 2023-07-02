@@ -7,6 +7,7 @@ import tech.kbtg.homework.lib.InputHospital;
 import tech.kbtg.homework.service.HwService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -103,7 +104,7 @@ public class HospitalController {
         hpt.setNumStaff(hospital.getNumStaff());
         hpt.setEmail(hospital.getEmail());
         hpt.setContact(hospital.getContact());
-        return hwService.HptSave(hpt);
+        return hwService.HptSave(hospital);
     }
 
     @DeleteMapping("/{id}")

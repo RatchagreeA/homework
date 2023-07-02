@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import tech.kbtg.homework.dao.HospitalDAO;
 import tech.kbtg.homework.entity.Hospital;
+import tech.kbtg.homework.entity.Patient;
 import tech.kbtg.homework.exception.NotFoundException;
 
 import java.util.List;
@@ -42,9 +43,40 @@ public class HospitalDAOImpl implements HospitalDAO {
 
     @Override
     public Hospital HptDeleteById(Integer id) {
-        Hospital hospital = HptFindById(id);
+        Hospital hospital = entityManager.find(Hospital.class, id);
+        if (hospital == null) {
+            throw new NotFoundException("Not found id " + id);
+        }
         entityManager.remove(hospital);
         return hospital;
     }
+
+//    @Override
+//    public Patient PtSave(Patient patient) {
+//        return entityManager.merge(patient);
+//    }
+//
+//    @Override
+//    public List<Patient> PtFindAll() {
+//        TypedQuery<Patient> query = entityManager.createQuery("FROM Patient", Patient.class);
+//        List<Patient> patients = query.getResultList();
+//        return patients;
+//    }
+//
+//    @Override
+//    public Patient PtFindById(Integer id) {
+//        Patient patient = entityManager.find(Patient.class, id);
+//        if (patient == null) {
+//            throw new NotFoundException("Not found id " + id);
+//        }
+//        return patient;
+//    }
+//
+//    @Override
+//    public Patient PtDeleteById(Integer id) {
+//        Patient patient = PtFindById(id);
+//        entityManager.remove(patient);
+//        return patient;
+//    }
 
 }

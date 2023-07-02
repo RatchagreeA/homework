@@ -2,65 +2,55 @@ package tech.kbtg.homework.service.impl;
 
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import tech.kbtg.homework.dao.HospitalDAO;
 
 import tech.kbtg.homework.entity.Hospital;
 
+import tech.kbtg.homework.exception.NotFoundException;
+import tech.kbtg.homework.repo.HospitalRepository;
 import tech.kbtg.homework.service.HwService;
 
 import java.util.List;
 
 @Service
 public class HwServiceImpl implements HwService {
-    private HospitalDAO hospitalDAO;
+
+    private HospitalRepository hospitalRepository;
 
 
-    public HwServiceImpl(HospitalDAO hospitalDAO) {
-        this.hospitalDAO = hospitalDAO;
+    public HwServiceImpl(HospitalRepository hospitalRepository) {
+        this.hospitalRepository = hospitalRepository;
     }
 
     @Override
     @Transactional
     public Hospital HptSave(Hospital hospital) {
-        return hospitalDAO.HptSave(hospital);
+        return hospitalRepository.save(hospital);
     }
 
     @Override
     public List<Hospital> HptFindAll() {
-        return hospitalDAO.HptFindAll();
+        return hospitalRepository.findAll();
     }
 
     @Override
     public Hospital HptFindById(Integer id) {
-        return hospitalDAO.HptFindById(id);
+        Hospital hospital = hospitalRepository.findById(id).orElse(null);
+        if (hospital == null) {
+            throw new NotFoundException("Not found id " + id);
+        }
+        return hospital;
     }
 
     @Override
     @Transactional
     public Hospital HptDeleteById(Integer id) {
-        return hospitalDAO.HptDeleteById(id);
+        Hospital hospital = hospitalRepository.findById(id).orElse(null);
+        if (hospital == null) {
+            throw new NotFoundException("Not found id " + id);
+        }
+        hospitalRepository.deleteById(id);
+        return hospital;
     }
 
-//    @Override
-//    @Transactional
-//    public Patient PtSave(Patient patient) {
-//        return patientDAO.PtSave(patient);
-//    }
-//
-//    @Override
-//    public List<Patient> PtFindAll() {
-//        return patientDAO.PtFindAll();
-//    }
-//
-//    @Override
-//    public Patient PtFindById(Integer id) {
-//        return patientDAO.PtFindById(id);
-//    }
-//
-//    @Override
-//    @Transactional
-//    public Patient PtDeleteById(Integer id) {
-//        return patientDAO.PtDeleteById(id);
-//    }
 
 }

@@ -3,4 +3,4 @@ INSERT INTO hospital (name,address,num_staff,email,contact,hospital_size,status)
 INSERT INTO hospital (name,address,num_staff,email,contact,hospital_size,status) VALUES ('Brazil'   ,'ad1', 13,'t13.g@mail.com','000000003', 'large','deleted' );
 INSERT INTO hospital (name,address,num_staff,email,contact,hospital_size,status) VALUES ('Italy'    ,'ad1', 14,'t14.g@mail.com','000000004', 'large','deleted' );
 INSERT INTO hospital (name,address,num_staff,email,contact,hospital_size,status) VALUES ('Canada'   ,'ad1', 15,'t15.g@mail.com','000000005', 'large','deleted' );
-INSERT INTO hospital (name,address,num_staff,email,contact,hospital_size,status) VALUES ('Thailand' ,'ad1', 16,'t16.g@mail.com','000000006', 'large','deleted' );
+--INSERT INTO hospital (name,address,num_staff,email,contact,hospital_size,status) VALUES ('Thailand' ,'ad1', 16,'t16.g@mail.com','000000006', 'large','deleted' );

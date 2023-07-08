@@ -33,6 +33,17 @@ public class HospitalDAOImpl implements HospitalDAO {
     }
 
     @Override
+    public List<Hospital> HptFind(Integer page, Integer pageSize) {
+        int offset = (page - 1)*pageSize;
+        TypedQuery<Hospital> query = entityManager
+                .createQuery("FROM Hospital WHERE", Hospital.class)
+                .setFirstResult(offset)
+                .setMaxResults(pageSize);
+        List<Hospital> hospitals = query.getResultList();
+        return hospitals;
+    }
+
+    @Override
     public Hospital HptFindById(Integer id) {
         Hospital hospital = entityManager.find(Hospital.class, id);
         if (hospital == null) {

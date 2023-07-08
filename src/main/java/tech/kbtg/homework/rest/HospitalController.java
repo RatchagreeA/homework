@@ -22,7 +22,7 @@ public class HospitalController {
     }
 
     @GetMapping("")
-    public List<List<Hospital>> getHospitals(
+    public List<Hospital> getHospitals(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String address,
             @RequestParam(required = false) Integer numStaff,
@@ -35,49 +35,8 @@ public class HospitalController {
             @RequestParam(required = false, defaultValue = "10") Integer pageSize
     ) {
 
-        List<Hospital> hospitals = hwService.HptFindAll();
-        if (name != null && !name.equals("")) {
-            hospitals = hospitals.stream().filter(h -> h.getName().equals(name)).collect(Collectors.toList());
-        }
-        if (address != null && !address.equals("")) {
-            hospitals = hospitals.stream().filter(h -> h.getAddress().contains(address)).collect(Collectors.toList());
-        }
-        if (numStaff != null) {
-            switch (operator) {
-                case "greater_than":
-                    hospitals = hospitals.stream().filter(h -> h.getNumStaff() > numStaff).collect(Collectors.toList());
-                    break;
-                case "less_than":
-                    hospitals = hospitals.stream().filter(h -> h.getNumStaff() < numStaff).collect(Collectors.toList());
-                    break;
-                case "greater_equal":
-                    hospitals = hospitals.stream().filter(h -> h.getNumStaff() >= numStaff).collect(Collectors.toList());
-                    break;
-                case "less_equal":
-                    hospitals = hospitals.stream().filter(h -> h.getNumStaff() <= numStaff).collect(Collectors.toList());
-                    break;
-                default:
-                    hospitals = hospitals.stream().filter(h -> h.getNumStaff() == numStaff).collect(Collectors.toList());
-            }
-        }
-        if (email != null && !email.equals("")) {
-            hospitals = hospitals.stream().filter(h -> h.getEmail().equals(email)).collect(Collectors.toList());
-        }
-        if (contact != null && !contact.equals("")) {
-            hospitals = hospitals.stream().filter(h -> h.getContact().equals(contact)).collect(Collectors.toList());
-        }
-        if (hospitalSize != null) {
-            hospitals = hospitals.stream().filter(h -> h.getHospitalSize().equals(hospitalSize)).collect(Collectors.toList());
-        }
-        if (status != null) {
-            hospitals = hospitals.stream().filter(h -> h.getStatus().equals(status)).collect(Collectors.toList());
-        }
-
-        List<List<Hospital>> pageHospital = Lists.partition(hospitals, pageSize);
-        if (page > pageHospital.size()) {
-            return pageHospital;
-        }
-        return pageHospital.subList(0, page);
+        List<Hospital> hospitals = hwService.HptFind(page, pageSize);
+        return hospitals;
     }
 
     @GetMapping("/{id}")

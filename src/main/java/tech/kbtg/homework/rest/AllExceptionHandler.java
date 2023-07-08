@@ -18,13 +18,13 @@ public class AllExceptionHandler {
         err.setTimeStamp(System.currentTimeMillis());
         return  new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler
-    public ResponseEntity<HospitalErrorResponse> handleException(Exception ex){
-        HospitalErrorResponse err = new HospitalErrorResponse();
-        err.setStatus(HttpStatus.BAD_REQUEST.value());
-        err.setMessage(ex.getMessage());
-        err.setTimeStamp(System.currentTimeMillis());
-        return  new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler
+//    public ResponseEntity<HospitalErrorResponse> handleException(Exception ex){
+//        HospitalErrorResponse err = new HospitalErrorResponse();
+//        err.setStatus(HttpStatus.BAD_REQUEST.value());
+//        err.setMessage(ex.getMessage());
+//        err.setTimeStamp(System.currentTimeMillis());
+//        return  new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
+//    }
 
 }

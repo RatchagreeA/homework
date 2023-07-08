@@ -9,6 +9,7 @@ public interface HospitalDAO {
     Hospital HptSave(Hospital hospital);
 
     List<Hospital> HptFindAll();
+    List<Hospital> HptFind(Integer page, Integer pageSize);
 
     Hospital HptFindById(Integer id);
 

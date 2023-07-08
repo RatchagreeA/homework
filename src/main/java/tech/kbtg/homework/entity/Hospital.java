@@ -2,6 +2,8 @@ package tech.kbtg.homework.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "hospital")
 public class Hospital {
@@ -31,6 +33,21 @@ public class Hospital {
     @Column(name = "status")
     private String status;
 
+    @OneToMany(mappedBy = "hospital" , cascade = CascadeType.ALL)
+    private List<Patient> patients;
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
+    }
+
+    public void addPatient(Patient patient) {
+        this.patients.add(patient);
+        patient.setHospital(this);
+    }
 
     public Hospital() {
     }

@@ -1,9 +1,11 @@
 package tech.kbtg.homework.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "patient")
+@JsonIgnoreProperties({"hospital"})
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +15,6 @@ public class Patient {
     private String name;
     @Column(name = "age")
     private Integer age;
-
-
-
     @Column(name = "gender")
     private String gender;
 
@@ -35,7 +34,7 @@ public class Patient {
     private String status;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hospital_id")
-    private Hospital  hospital;
+    private Hospital hospital;
 
     public Patient() {
     }
